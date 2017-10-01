@@ -1,0 +1,149 @@
+# wm independent hotkeys
+
+super + F1
+        exec sxhkd-reload
+
+super + F2
+        exec xorg-lock
+
+super + Return
+        exec x-terminal
+
+super + shift + Return
+        exec xterm
+
+super + slash
+        exec xorg-raise-xwin
+
+super + p
+        exec dacti
+
+super + y
+        exec stj1
+
+super + minus
+        exec xorg-switch-to-desktop
+
+super + XF86AudioMute
+        exec mpc -q toggle
+
+super + XF86Audio{Lower,Raise}Volume
+        exec mpc -q {prev,next}
+
+super + shift + XF86AudioMute
+        exec spotify-mpris PlayPause
+
+super + shift + XF86Audio{Lower,Raise}Volume
+        exec spotify-mpris {Previous,Next}
+
+super + XF86MonBrightness{Down,Up}
+        exec xorg-touchpad {disable,enable}
+
+XF86MonBrightness{Down,Up}
+        exec daylight {dark,light}
+
+XF86Display
+        exec arandr
+
+XF86Audio{Raise,Lower}Volume
+        exec volume {+,-}
+
+XF86AudioMute
+        exec volume toggle
+
+Print
+        exec screenshot-single
+
+shift + Print
+        exec screenshot-multi
+
+# -- Bspwm hotkeys.
+
+## general
+
+super + shift + F1
+        bspc quit
+
+super + {_,shift + }q
+        bspc node --{close,kill}
+
+super + space
+        bspc node --state floating && \
+        y=$(bspc query -T -n focused | jq .client.floatingRectangle.y) && \
+        bspc node --move 0 -$y && \
+        bspc node --resize bottom 0 $((y+y)) || \
+        bspc node --state ~floating
+
+super + shift + space
+        bspc desktop --layout next
+
+super + alt + b
+    bspc node @/ --balance
+
+super + alt + space
+    bspc node @/ --equalize
+
+super + alt + {x,y,z}
+        bspc node --flag {locked,sticky,private}
+
+super + {f,shift + f,t,shift + t}
+        bspc node --state {fullscreen,floating,pseudo_tiled,tiled}
+
+## preselect
+
+super + ctrl + {h,j,k,l}
+        bspc node --presel-dir {west,south,north,east}
+
+super + ctrl + space
+        bspc node --presel-dir cancel
+
+super + ctrl + shift + space
+        bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+super + ctrl + {1-9}
+        bspc node --presel-ratio 0.{1-9}
+
+## focus/swap
+
+super + g
+        bspc node --swap biggest
+
+super + {_,shift + }{h,j,k,l}
+        bspc node --{focus,swap} {west,south,north,east}
+
+super + {_,shift + }Tab
+        bspc node --focus {next,prev}.local
+
+super + bracket{left,right}
+        bspc node --focus {prev,next} || bspc node --focus last
+
+super + shift + {Left,Right}
+        bspc desktop --focus {prev,next}
+
+super + {_,shift + }a
+        bspc {node,desktop} --focus last
+
+super + {_,shift + }{1-5}
+        bspc {desktop --focus,node --to-desktop} ^{1-5}
+
+## move/resize
+
+super + shift + o
+    bspc node @/ --rotate 90
+
+super + {_,shift + } + backslash
+    bspc node @/ --flip {vertical,horizontal}
+
+super + {_,shift + }c
+    bspc node @/ --circulate {forward,backward}
+
+super + alt + {h,j,k,l}
+        bspc node --resize {left -10 0,bottom 0 10,top 0 -10,right 10 0}
+
+super + alt + shift + {h,j,k,l}
+        bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
+
+super + {Left,Down,Up,Right}
+        bspc node -v {-10 0,0 10,0 -10,10 0}
+
+#  vim: set ts=8 sw=8 tw=0 et :
