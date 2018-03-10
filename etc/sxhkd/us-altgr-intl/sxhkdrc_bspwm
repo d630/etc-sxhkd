@@ -129,10 +129,10 @@ super + {_,shift + }{1-5}
 ## move/resize
 
 super + shift + o
-    bspc node @/ --rotate 90
+        bspc node @/ --rotate 90
 
 super + {_,shift + } + backslash
-    bspc node @/ --flip {vertical,horizontal}
+        bspc node @/ --flip {vertical,horizontal}
 
 super + {_,shift + }c
     bspc node @/ --circulate {forward,backward}
