@@ -39,6 +39,9 @@ super + shift + XF86Audio{Lower,Raise}Volume
 super + XF86MonBrightness{Down,Up}
         exec xorg-touchpad {disable,enable}
 
+#ctrl + alt + v
+#	 exec xorg-selection-primary-out
+
 XF86MonBrightness{Down,Up}
         exec daylight {dark,light}
 
@@ -146,4 +149,4 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
         bspc node -v {-10 0,0 10,0 -10,10 0}
 
-#  vim: set ts=8 sw=8 tw=0 et :
+# vim: set ft=sxhkdrc :
