@@ -126,8 +126,8 @@ super + shift + {Left,Right}
 super + {_,shift + }a
         bspc {node,desktop} --focus last
 
-super + {_,shift + }{1-5}
-        bspc {desktop --focus,node --to-desktop} ^{1-5}
+super + {_,shift + }{1-9,0}
+        bspc {desktop --focus,node --to-desktop} ^{1-9,0}
 
 ## move/resize
 
