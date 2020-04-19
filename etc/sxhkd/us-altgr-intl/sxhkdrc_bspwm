@@ -1,7 +1,7 @@
 # wm independent hotkeys
 
 super + F1
-        exec sxhkd-reload
+        exec reload-sxhkd
 
 super + F2
         exec xorg-lock
@@ -36,12 +36,6 @@ super + shift + XF86AudioMute
 super + shift + XF86Audio{Lower,Raise}Volume
         exec spotify-mpris {Previous,Next}
 
-super + XF86MonBrightness{Down,Up}
-        exec xorg-touchpad {disable,enable}
-
-#ctrl + alt + v
-#	 exec xorg-selection-primary-out
-
 XF86MonBrightness{Down,Up}
         exec daylight {dark,light}
 
@@ -55,10 +49,10 @@ XF86AudioMute
         exec volume toggle
 
 Print
-        exec screenshot-single
+        exec run-scrot
 
 shift + Print
-        exec screenshot-multi
+        exec run-scrot -m
 
 # -- Bspwm hotkeys.
 
