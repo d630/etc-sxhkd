@@ -36,9 +36,6 @@ super + shift + XF86AudioMute
 super + shift + XF86Audio{Lower,Raise}Volume
         exec spotify-mpris {Previous,Next}
 
-XF86Display
-        exec arandr
-
 XF86Audio{Raise,Lower}Volume
         exec volume {+,-}
 
