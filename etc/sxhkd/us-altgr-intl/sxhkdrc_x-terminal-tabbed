@@ -1,42 +1,33 @@
 # wm independent hotkeys
 
 super + q
-        pkill -USR1 -f 'sxhkd -c'
+        exec reload-sxhkd
 
 super + alt + s
-        scrot '%Y-%m-%d--%s_$wx$h.png' -m -e 'mv $f ~/tmp/'
+        exec run-scrot -m
 
 super + shift + s
-        scrot '%Y-%m-%d--%s_$wx$h.png' -d 1 -s -e 'mv $f ~/tmp/'
+        exec run-scrot
 
 super + shift + Delete
         exec xorg-lock
 
-super + s
-        xscreensaver-demo
-
 super + p
-        dacti
+        exec dacti
 
 super + r
-        arandr
+        exec arandr
 
 XF86Audio{Raise,Lower}Volume
-        volume {+,-}
+        exec volume {+,-}
 
 XF86AudioMute
-        volume toggle
+        exec volume toggle
 
 super + XF86AudioMute
-        mpc -q toggle
+        exec mpc -q toggle
 
 super + XF86Audio{Lower,Raise}Volume
-        mpc -q {prev,next}
-
-super + XF86MonBrightness{Down,Up}
-        xinput {--disable,--enable} "ETPS/2 Elantech Touchpad"
-
-XF86MonBrightness{Down,Up}
-        theme {dark,light}
+        exec mpc -q {prev,next}
 
 #  vim: set ts=8 sw=8 tw=0 et :

@@ -1,50 +1,11 @@
-# super + shift + x
-#     xwinreg-close-active-region.sh
-#
-# super + F1
-#     xwinreg-master-west.sh
-#
-# super + F2
-#     xwinreg-master-north.sh
-#
-# super + F3
-#     xwinreg-master-east.sh
-#
-# super + F4
-#     xwinreg-master-south.sh
-#
-# super + F5
-#     xwinreg-grid-square-horizontal.sh
-#
-# super + F6
-#     xwinreg-grid-square-vertical.sh
-#
-# super + F7
-#     xwinreg-grid-horizontal.sh
-#
-# super + F8
-#     xwinreg-grid-vertical.sh
-#
-# super + alt + j
-#     xwinreg-cycle-clock.sh
-#
-# super + alt + k
-#     xwinreg-cycle-anticlock.sh
-#
-# super + shift + m
-#     xwinreg-maximize-all.sh
-#
-# super + o
-#     xwinreg-cycle-reg-clock.sh
-
 super + slash
-    xorg-raise-xwin
+    exec xorg-raise-xwin
 
 super + alt + s
-    scrot '%Y-%m-%d--%s_$wx$h.png' -m -e 'mv $f ~/tmp/'
+    exec run-scrot -m
 
 super + shift + s
-    scrot '%Y-%m-%d--%s_$wx$h.png' -d 1 -s -e 'mv $f ~/tmp/'
+    exec run-scrot
 
 super + Return
     exec x-terminal
@@ -55,35 +16,26 @@ super + shift + Return
 super + shift + Delete
     exec xorg-lock
 
-super + s
-    xscreensaver-demo
-
 super + p
-    dacti
+    exec dacti
 
 super + r
-    arandr
+    exec arandr
 
 super + y
     exec stj1
 
 super + minus
-    xorg-switch-to-desktop
+    exec xorg-switch-to-desktop
 
 XF86Audio{Raise,Lower}Volume
-    volume {+,-}
+    exec volume {+,-}
 
 XF86AudioMute
-    volume toggle
+    exec volume toggle
 
 super + XF86AudioMute
-    mpc -q toggle
+    exec mpc -q toggle
 
 super + XF86Audio{Lower,Raise}Volume
-    mpc -q {prev,next}
-
-super + XF86MonBrightness{Down,Up}
-    xinput {--disable,--enable} "ETPS/2 Elantech Touchpad"
-
-XF86MonBrightness{Down,Up}
-        theme {dark,light}
+    exec mpc -q {prev,next}
