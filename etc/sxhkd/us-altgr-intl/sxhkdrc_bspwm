@@ -60,10 +60,10 @@ super + {_,shift + }q
 
 super + space
         bspc node --state floating && \
-        y=$(bspc query -T -n focused | jq .client.floatingRectangle.y) && \
+        y=$(exec bspc query -T -n focused | exec jq .client.floatingRectangle.y) && \
         bspc node --move 0 -$y && \
         bspc node --resize bottom 0 $((y+y)) || \
-        bspc node --state ~floating
+        exec bspc node --state ~floating
 
 super + shift + space
         exec bspc desktop --layout next
@@ -80,6 +80,12 @@ super + alt + {x,y,z}
 super + {f,shift + f,t,shift + t}
         exec bspc node --state {fullscreen,floating,pseudo_tiled,tiled}
 
+super + period
+        exec bspc node --flag hidden
+
+super + {ctrl,_} + shift + period
+        exec bspc query -N {_,-d} -n .hidden | exec xargs -r -I _ -n 1 bspc node _ --flag hidden=off
+
 ## preselect
 
 super + ctrl + {h,j,k,l}
@@ -89,7 +95,7 @@ super + ctrl + space
         exec bspc node --presel-dir cancel
 
 super + ctrl + shift + space
-        exec bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+        exec bspc query -N -d | exec xargs -r -I id -n 1 bspc node id -p cancel
 
 super + ctrl + {1-9}
         exec bspc node --presel-ratio 0.{1-9}
@@ -106,7 +112,7 @@ super + {_,shift + }Tab
         exec bspc node --focus {next,prev}.local
 
 super + bracket{left,right}
-        exec bspc node --focus {prev,next} || bspc node --focus last
+        bspc node --focus {prev,next} || exec bspc node --focus last
 
 super + shift + {Left,Right}
         exec bspc desktop --focus {prev,next}
@@ -132,9 +138,9 @@ super + alt + {h,j,k,l}
         exec bspc node --resize {left -10 0,bottom 0 10,top 0 -10,right 10 0}
 
 super + alt + shift + {h,j,k,l}
-        exec bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
+        exec bspc node --resize {right -10 0,top 0 10,bottom 0 -10,left 10 0}
 
 super + {Left,Down,Up,Right}
-        exec bspc node -v {-10 0,0 10,0 -10,10 0}
+        exec bspc node --move {-10 0,0 10,0 -10,10 0}
 
 # vim: set ft=sxhkdrc :
